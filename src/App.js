@@ -23,6 +23,7 @@ const AppContainer = styled.div`
   background-color: #f199a7;
   color: #4b4b4b;
   padding: 30px 0;
+  box-sizing: border-box;
   /* max-width: 600px;
   min-width: 390px;
   max-height: 844px;

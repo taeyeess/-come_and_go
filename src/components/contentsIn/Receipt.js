@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import InCome from "./InCome";
+import Outlay from "./Outlay";
 
 const Receipt = () => {
   const date = new Date();
@@ -16,6 +18,8 @@ const Receipt = () => {
         left: "45px",
         top: "136px",
         backgroundColor: "#F9DE87",
+        padding: "0px 20px",
+        boxSizing: "border-box",
       }}
     >
       <Title>RECEIPT</Title>
@@ -28,14 +32,8 @@ const Receipt = () => {
           DATE : {year}/ {todayMonth}/ {todayDate}
         </div>
       </UserInfo>
-      <hr
-        className="dash"
-        style={{
-          width: "320px",
-          border: "1px dashed black",
-          backgroundColor: "#F9DE87",
-        }}
-      ></hr>
+      <InCome />
+      <Outlay />
     </div>
   );
 };
@@ -46,7 +44,6 @@ const Title = styled.h3`
 `;
 
 const UserInfo = styled.div`
-  padding-left: 20px;
   .name {
     font-weight: 200;
     font-size: 13px;
