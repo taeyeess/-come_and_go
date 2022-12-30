@@ -1,7 +1,11 @@
 import React from "react";
 
-const header = () => {
-  return <div></div>;
+const Header = () => {
+  return (
+    <div>
+      <h1>DEULOCK - NALOCK</h1>
+    </div>
+  );
 };
 
-export default header;
+export default Header;

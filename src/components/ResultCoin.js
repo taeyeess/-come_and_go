@@ -1,7 +1,7 @@
 import React from "react";
 
-const main = () => {
+const ResultCoin = () => {
   return <div></div>;
 };
 
-export default main;
+export default ResultCoin;
