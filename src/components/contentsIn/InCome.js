@@ -8,16 +8,19 @@ const InCome = () => {
       id: 1,
       text: "월급",
       checked: true,
+      price: "3,000,000",
     },
     {
       id: 2,
       text: "캐시백",
       checked: true,
+      price: "12,000",
     },
     {
       id: 3,
       text: "당근거래",
       checked: false,
+      price: "15,000",
     },
   ]);
   return (

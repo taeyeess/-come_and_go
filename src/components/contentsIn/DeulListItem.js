@@ -4,7 +4,7 @@ import CheckInput from "./CheckInput";
 import CheckOutInput from "./CheckOutInput";
 
 const DeulListItem = ({ list }) => {
-  const { id, text, checked } = list;
+  const { id, text, checked, price } = list;
   return (
     <li
       className="DeulListItem"
@@ -14,10 +14,19 @@ const DeulListItem = ({ list }) => {
         // justifyContent: "space-between",
       }}
     >
-      <div className={cn("checkbox", { checked })}>
+      <div
+        className={cn("checkbox", { checked })}
+        style={{ position: "relative" }}
+      >
         {checked ? <CheckInput /> : <CheckOutInput />}
-        <div className="text" style={{ display: "inline" }}>
+        <div className="listItems" style={{ display: "inline" }}>
           {text}
+        </div>
+        <div
+          className="listPrice"
+          style={{ display: "inline", position: "absolute", right: "0" }}
+        >
+          + {price}
         </div>
       </div>
     </li>
