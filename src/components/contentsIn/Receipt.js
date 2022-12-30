@@ -32,7 +32,7 @@ const Receipt = () => {
         className="dash"
         style={{
           width: "320px",
-          borderTop: "1px dashed #bbb",
+          border: "1px dashed black",
           backgroundColor: "#F9DE87",
         }}
       ></hr>
