@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import InCome from "./InCome";
 import Outlay from "./Outlay";
@@ -9,6 +9,19 @@ const Receipt = () => {
   const todayMonth = date.getMonth() + 1;
   const todayDate = date.getDate();
   // console.log(`${year}/ ${todayMonth}/ ${todayDate}`);
+  const inputRef = useRef();
+
+  const [value, setValue] = useState("");
+
+  const onSubmit = e => {
+    const code = e.code;
+    e.preventDefault();
+    setValue(e.target.value);
+    console.log(value);
+    if (code === "Enter") {
+      inputRef.current.blur();
+    }
+  };
   return (
     <div
       style={{
@@ -24,10 +37,17 @@ const Receipt = () => {
     >
       <Title>RECEIPT</Title>
       <UserInfo>
-        <div className="name">
+        <form className="name" onSubmit={onSubmit}>
           CASHIER :
-          <input type="text" placeholder="이름을 입력하세요" autoFocus></input>
-        </div>
+          <input
+            type="text"
+            refs={inputRef}
+            placeholder="이름을 입력하세요"
+            // autoFocus
+            value={value || ""}
+            onChange={e => setValue(e.target.value)}
+          ></input>
+        </form>
         <div className="date">
           DATE : {year}/ {todayMonth}/ {todayDate}
         </div>
