@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import DeulList from "./DeulList";
+import ComeOutModal from "../../modal/ComeOutModal";
 
-const InCome = () => {
+const Deul = () => {
   const [deulList, setDeulList] = useState([
     {
       id: 1,
@@ -23,11 +24,20 @@ const InCome = () => {
       price: "15,000",
     },
   ]);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const onClickPlus = () => {
+    setModalVisible(true);
+  };
+  const onClickCancel = () => {
+    setModalVisible(false);
+  };
   return (
     <DeulWrapper>
       <div className="header">
         <h3 style={{ textAlign: "center" }}>Deul</h3>
         <span
+          onClick={onClickPlus}
           className="add"
           style={{
             position: "absolute",
@@ -39,6 +49,7 @@ const InCome = () => {
         >
           +
         </span>
+        {modalVisible && <ComeOutModal cancel={onClickCancel} />}
       </div>
       <hr
         className="dash"
@@ -59,4 +70,4 @@ const DeulWrapper = styled.div`
   }
 `;
 
-export default InCome;
+export default Deul;

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import InCome from "./InCome";
-import Outlay from "./Outlay";
+import Deul from "./inCome/Deul";
+import Outlay from "./outLay/Nal";
 
 const Receipt = () => {
   const date = new Date();
@@ -44,7 +44,7 @@ const Receipt = () => {
             type="text"
             // refs={inputRef}
             placeholder="이름을 입력하세요"
-            // autoFocus
+            autoFocus
             value={value || ""}
             onChange={e => setValue(e.target.value)}
           ></input>
@@ -53,7 +53,7 @@ const Receipt = () => {
           DATE : {year}/ {todayMonth}/ {todayDate}
         </div>
       </UserInfo>
-      <InCome />
+      <Deul />
       <Outlay />
     </div>
   );

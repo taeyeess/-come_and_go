@@ -1,7 +1,7 @@
 import React from "react";
-import Receipt from "./contentsIn/Receipt";
-import Note from "./contentsIn/Note";
-import CheckList from "./contentsIn/CheckList";
+import Receipt from "./receipt/Receipt";
+import Note from "./note/Note";
+import CheckList from "./checkList/CheckList";
 
 const Contents = () => {
   return (

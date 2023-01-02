@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
-import CheckInput from "./CheckInput";
-import CheckOutInput from "./CheckOutInput";
+import CheckInput from "../CheckInput";
+import CheckOutInput from "../CheckOutInput";
 
 const DeulListItem = ({ list }) => {
   const { id, text, checked, price } = list;

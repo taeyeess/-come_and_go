@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Header from "./components/Header";
 import Contents from "./components/Contents";
-import ResultCoin from "./components/ResultCoin";
 
 function App() {
   return (
@@ -10,7 +9,6 @@ function App() {
       <Main>
         <Header />
         <Contents />
-        <ResultCoin />
       </Main>
     </AppContainer>
   );
