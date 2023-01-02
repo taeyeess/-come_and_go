@@ -13,14 +13,15 @@ const Receipt = () => {
 
   const [value, setValue] = useState("");
 
+  // input태그의 focus-out을 위한 form태그의 onSubmit함수
   const onSubmit = e => {
-    const code = e.code;
+    // const code = e.code;
     e.preventDefault();
-    setValue(e.target.value);
+    // setValue(e.target.value);
     console.log(value);
-    if (code === "Enter") {
-      inputRef.current.blur();
-    }
+    // if (code === "Enter") {
+    //   inputRef.current.blur();
+    // }
   };
   return (
     <div
@@ -41,7 +42,7 @@ const Receipt = () => {
           CASHIER :
           <input
             type="text"
-            refs={inputRef}
+            // refs={inputRef}
             placeholder="이름을 입력하세요"
             // autoFocus
             value={value || ""}
