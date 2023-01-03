@@ -2,11 +2,12 @@ import React from "react";
 import cn from "classnames";
 import CheckInput from "../CheckInput";
 import CheckOutInput from "../CheckOutInput";
+import styled from "styled-components";
 
 const DeulListItem = ({ list }) => {
   const { id, text, checked, price } = list;
   return (
-    <li
+    <DeulListItems
       className="DeulListItem"
       style={{
         listStyle: "none",
@@ -29,8 +30,15 @@ const DeulListItem = ({ list }) => {
           + {price}
         </div>
       </div>
-    </li>
+    </DeulListItems>
   );
 };
 
+const DeulListItems = styled.div`
+  .checked {
+    color: #b9b69a;
+    text-decoration-line: line-through;
+    text-decoration-color: red;
+  }
+`;
 export default DeulListItem;

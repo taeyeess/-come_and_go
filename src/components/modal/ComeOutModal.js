@@ -27,6 +27,14 @@ const ComeOutModal = ({ cancel }) => {
           X
         </span>
       </ModalHeader>
+      <ModalContents>
+        <form>
+          항목 : <input type="text" autoFocus></input>
+        </form>
+        <form>
+          금액 : <input type="text"></input>
+        </form>
+      </ModalContents>
     </ModalWrapper>
   );
 };
@@ -67,6 +75,7 @@ const ModalHeader = styled.div`
       box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
     }
     &.active {
+      box-shadow: inset 0 0 10px #aeaca0;
       background-color: #ffd740;
     }
   }
@@ -89,6 +98,25 @@ const ModalHeader = styled.div`
     padding: 10px;
     cursor: pointer;
     /* background-color: green; */
+  }
+`;
+
+const ModalContents = styled.div`
+  width: 100%;
+  height: 150px;
+  padding: 20px;
+  /* background-color: red; */
+  input {
+    width: 100px;
+    border: 0;
+    background-color: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-bottom: 1px solid grey;
+    margin-bottom: 5px;
+    :focus {
+      outline: none;
+    }
   }
 `;
 export default ComeOutModal;

@@ -3,11 +3,11 @@ import DeulListItem from "./DeulListItem";
 
 const DeulList = ({ deulList }) => {
   return (
-    <ul className="DeulList" style={{ listStyle: "none", padding: "0" }}>
+    <div className="DeulList" style={{ padding: "0" }}>
       {deulList.map(list => (
         <DeulListItem list={list} key={list.id} />
       ))}
-    </ul>
+    </div>
   );
 };
 
