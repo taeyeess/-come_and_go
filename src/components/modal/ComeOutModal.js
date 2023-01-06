@@ -2,24 +2,33 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const ComeOutModal = ({ cancel }) => {
-  const [btnActive, setBtnActive] = useState(false);
+  const [btnDeulActive, setBtnDeulActive] = useState(false);
+  const [btnNalActive, setBtnNalActive] = useState(false);
   // console.log(btnActive);
 
-  const onClickBtn = () => {
-    setBtnActive(true);
-    console.log(btnActive);
+  const onClickDeulBtn = () => {
+    setBtnDeulActive(true);
+    setBtnNalActive(false);
+  };
+
+  const onClickNalBtn = () => {
+    setBtnNalActive(true);
+    setBtnDeulActive(false);
   };
   return (
     <ModalWrapper>
       <ModalHeader>
         <div>
           <button
-            className={"income" + " " + (btnActive ? "active" : "")}
-            onClick={onClickBtn}
+            className={"income" + " " + (btnDeulActive ? "active" : "")}
+            onClick={onClickDeulBtn}
           >
             들락
           </button>
-          <button className="out" onClick={onClickBtn}>
+          <button
+            className={"out" + " " + (btnNalActive ? "active" : "")}
+            onClick={onClickNalBtn}
+          >
             날락
           </button>
         </div>
@@ -34,6 +43,7 @@ const ComeOutModal = ({ cancel }) => {
         <form>
           금액 : <input type="text"></input>
         </form>
+        <div className="submitButton">완료</div>
       </ModalContents>
     </ModalWrapper>
   );
@@ -75,7 +85,7 @@ const ModalHeader = styled.div`
       box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
     }
     &.active {
-      box-shadow: inset 0 0 10px #aeaca0;
+      box-shadow: inset 0 0 3px #aeaca0;
       background-color: #ffd740;
     }
   }
@@ -116,6 +126,23 @@ const ModalContents = styled.div`
     margin-bottom: 5px;
     :focus {
       outline: none;
+    }
+  }
+  .submitButton {
+    position: absolute;
+    left: 105px;
+    bottom: 20px;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 20px;
+    border: 2px solid #ffd740;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      border: 2px solid #ffe68c;
+      background-color: #ffd740;
     }
   }
 `;
