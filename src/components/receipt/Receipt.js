@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Deul from "./inCome/Deul";
 import Outlay from "./outLay/Nal";
+import ComeOutModal from "../modal/ComeOutModal";
 
 const Receipt = () => {
   const date = new Date();
@@ -23,6 +24,27 @@ const Receipt = () => {
     //   inputRef.current.blur();
     // }
   };
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const onClickPlus = () => {
+    setModalVisible(true);
+    // console.log(modalVisible);
+  };
+  const onClickCancel = () => {
+    setModalVisible(false);
+  };
+
+  const [btnActive, setBtnActive] = useState(true);
+
+  const switchBtnActive = flag => {
+    // console.log("1111");
+    setBtnActive(flag);
+    console.log(flag);
+    console.log(btnActive);
+    // setModalVisible(true);
+  };
+
   return (
     <div
       style={{
@@ -54,7 +76,46 @@ const Receipt = () => {
         </div>
       </UserInfo>
       <Deul />
+      <span
+        onClick={onClickPlus}
+        // btnActive={btnActive}
+        // switchBtnActive={switchBtnActive}
+        className="deulAdd"
+        style={{
+          position: "absolute",
+          top: "150px",
+          right: "30px",
+          fontSize: "25px",
+          cursor: "pointer",
+        }}
+      >
+        +
+      </span>
       <Outlay />
+      <span
+        onClick={onClickPlus}
+        className="nalAdd"
+        // switchBtnActive={switchBtnActive}
+        style={{
+          position: "absolute",
+          top: "368px",
+          right: "30px",
+          fontSize: "25px",
+          cursor: "pointer",
+        }}
+      >
+        +
+      </span>
+      {modalVisible && (
+        <ComeOutModal
+          cancel={onClickCancel}
+          switchBtnActive={switchBtnActive}
+          btnActive={btnActive}
+          // addList={addList}
+          // handleSubmit={handleSubmit}
+          // deulList={deulList}
+        />
+      )}
     </div>
   );
 };

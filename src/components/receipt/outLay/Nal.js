@@ -6,18 +6,6 @@ const Outlay = () => {
     <NalWrapper>
       <div className="header">
         <h3 style={{ textAlign: "center" }}>NAL</h3>
-        <span
-          className="add"
-          style={{
-            position: "absolute",
-            top: "-5px",
-            left: "290px",
-            fontSize: "25px",
-            cursor: "pointer",
-          }}
-        >
-          +
-        </span>
       </div>
       <hr
         className="dash"
@@ -31,9 +19,6 @@ const Outlay = () => {
 };
 const NalWrapper = styled.div`
   min-height: 300px;
-  .header {
-    position: relative;
-  }
 `;
 
 export default Outlay;

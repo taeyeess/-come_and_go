@@ -1,32 +1,57 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const ComeOutModal = ({ cancel }) => {
-  const [btnDeulActive, setBtnDeulActive] = useState(false);
-  const [btnNalActive, setBtnNalActive] = useState(false);
+const ComeOutModal = ({ cancel, handleSubmit, switchBtnActive, btnActive }) => {
+  // const [btnActive, setBtnActive] = useState(true);
+  // const [btnNalActive, setBtnNalActive] = useState(false);
   // console.log(btnActive);
 
+  const [content, setContent] = useState("");
+  const [price, setPrice] = useState("");
+
+  // css를 동적으로 바꾸기 위한 상태값
+  const [flag, setFlag] = useState(true);
+
+  //이벤트가 발생할 때마다 (글자가 하나씩 입력될 때 마다) 변화를 감지
+  const handleContentChange = e => {
+    setContent(e.target.value);
+  };
+  const handlePriceChange = e => {
+    setPrice(e.target.value);
+  };
+
   const onClickDeulBtn = () => {
-    setBtnDeulActive(true);
-    setBtnNalActive(false);
+    // btnActive(true);
+    setFlag(true);
+    switchBtnActive(true);
   };
 
   const onClickNalBtn = () => {
-    setBtnNalActive(true);
-    setBtnDeulActive(false);
+    // btnActive(false);
+    setFlag(false);
+    switchBtnActive(false);
   };
+
   return (
     <ModalWrapper>
       <ModalHeader>
         <div>
           <button
-            className={"income" + " " + (btnDeulActive ? "active" : "")}
+            className={"income" + " " + (flag ? "active" : "")}
+            // onClick={() => {
+            //   console.log("22222");
+            //   switchBtnActive();
+            // }}
             onClick={onClickDeulBtn}
           >
             들락
           </button>
           <button
-            className={"out" + " " + (btnNalActive ? "active" : "")}
+            className={"out" + " " + (flag ? "" : "active")}
+            // onClick={() => {
+            //   console.log("22222");
+            //   switchBtnActive();
+            // }}
             onClick={onClickNalBtn}
           >
             날락
@@ -38,12 +63,36 @@ const ComeOutModal = ({ cancel }) => {
       </ModalHeader>
       <ModalContents>
         <form>
-          항목 : <input type="text" autoFocus></input>
+          항목 :
+          <input
+            type="text"
+            name="text"
+            placeholder="항목을 입력하세요"
+            value={content}
+            onChange={handleContentChange}
+            autoFocus
+          ></input>
         </form>
         <form>
-          금액 : <input type="text"></input>
+          금액 :
+          <input
+            type="text"
+            name="text"
+            placeholder="금액을 입력하세요"
+            value={price}
+            onChange={handlePriceChange}
+          ></input>
         </form>
-        <div className="submitButton">완료</div>
+        <div
+          className="submitButton"
+          onClick={() => {
+            cancel();
+            handleSubmit();
+            //addList();
+          }}
+        >
+          완료
+        </div>
       </ModalContents>
     </ModalWrapper>
   );
@@ -56,8 +105,8 @@ const ModalWrapper = styled.div`
   box-shadow: 0 20px 30px rgb(0 0 0 / 20%);
   border-radius: 20px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 170px;
+  left: 20px;
   z-index: 1;
 `;
 
