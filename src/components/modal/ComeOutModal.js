@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const ComeOutModal = ({ cancel, handleSubmit, switchBtnActive, btnActive }) => {
+const ComeOutModal = ({ cancel, handleSubmit, switchBtnActive }) => {
   // const [btnActive, setBtnActive] = useState(true);
   // const [btnNalActive, setBtnNalActive] = useState(false);
   // console.log(btnActive);
@@ -38,20 +38,12 @@ const ComeOutModal = ({ cancel, handleSubmit, switchBtnActive, btnActive }) => {
         <div>
           <button
             className={"income" + " " + (flag ? "active" : "")}
-            // onClick={() => {
-            //   console.log("22222");
-            //   switchBtnActive();
-            // }}
             onClick={onClickDeulBtn}
           >
             들락
           </button>
           <button
             className={"out" + " " + (flag ? "" : "active")}
-            // onClick={() => {
-            //   console.log("22222");
-            //   switchBtnActive();
-            // }}
             onClick={onClickNalBtn}
           >
             날락
@@ -91,7 +83,7 @@ const ComeOutModal = ({ cancel, handleSubmit, switchBtnActive, btnActive }) => {
             //addList();
           }}
         >
-          완료
+          ADD
         </div>
       </ModalContents>
     </ModalWrapper>

@@ -1,24 +1,32 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState, useRef } from "react";
 
-const Outlay = () => {
+import NalList from "./NalListItem";
+
+const Nal = () => {
+  const [nalList, setNalList] = useState([]);
+
+  const nextId = useRef(0);
+  const handleSubmit = text => {
+    //setNalList([...nalList, text]);
+    const list = {
+      id: nextId.current,
+      text: "",
+      checked: false,
+    };
+    setNalList(nalList.concat(list));
+    nextId.current += 1; //nextId를 1씩 더하기
+  };
+
+  // localStroage에 저장
+  const addList = () => {
+    localStorage.setItem();
+  };
+
   return (
-    <NalWrapper>
-      <div className="header">
-        <h3 style={{ textAlign: "center" }}>NAL</h3>
-      </div>
-      <hr
-        className="dash"
-        style={{
-          border: "1px dashed #4b4b4b",
-          backgroundColor: "#F9DE87",
-        }}
-      />
-    </NalWrapper>
+    <div>
+      <NalList NalList={NalList} />
+    </div>
   );
 };
-const NalWrapper = styled.div`
-  min-height: 300px;
-`;
 
-export default Outlay;
+export default Nal;

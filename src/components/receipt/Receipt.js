@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Deul from "./inCome/Deul";
-import Outlay from "./outLay/Nal";
+import Nal from "./outLay/Nal";
 import ComeOutModal from "../modal/ComeOutModal";
 
 const Receipt = () => {
@@ -10,7 +10,6 @@ const Receipt = () => {
   const todayMonth = date.getMonth() + 1;
   const todayDate = date.getDate();
   // console.log(`${year}/ ${todayMonth}/ ${todayDate}`);
-  const inputRef = useRef();
 
   const [value, setValue] = useState("");
 
@@ -37,12 +36,31 @@ const Receipt = () => {
 
   const [btnActive, setBtnActive] = useState(true);
 
+  // btnActive 상태값을 변경하기 위한 함수. 실질적으로 ComeOutModal컴포넌트에 보내져서 상태값을 변경받음
   const switchBtnActive = flag => {
-    // console.log("1111");
     setBtnActive(flag);
     console.log(flag);
     console.log(btnActive);
-    // setModalVisible(true);
+  };
+
+  const [deulList, setDeulList] = useState([]);
+
+  const nextId = useRef(0);
+  const handleSubmit = text => {
+    //setDeulList([...deulList, text]);
+    const list = {
+      id: nextId.current,
+      text: "",
+      price: "",
+      checked: false,
+    };
+    setDeulList(deulList.concat(list));
+    nextId.current += 1; //nextId를 1씩 더하기
+  };
+
+  // localStroage에 저장
+  const addList = () => {
+    localStorage.setItem();
   };
 
   return (
@@ -75,44 +93,57 @@ const Receipt = () => {
           DATE : {year}/ {todayMonth}/ {todayDate}
         </div>
       </UserInfo>
-      <Deul />
-      <span
-        onClick={onClickPlus}
-        // btnActive={btnActive}
-        // switchBtnActive={switchBtnActive}
-        className="deulAdd"
-        style={{
-          position: "absolute",
-          top: "150px",
-          right: "30px",
-          fontSize: "25px",
-          cursor: "pointer",
-        }}
-      >
-        +
-      </span>
-      <Outlay />
-      <span
-        onClick={onClickPlus}
-        className="nalAdd"
-        // switchBtnActive={switchBtnActive}
-        style={{
-          position: "absolute",
-          top: "368px",
-          right: "30px",
-          fontSize: "25px",
-          cursor: "pointer",
-        }}
-      >
-        +
-      </span>
+      <DeulHeader>
+        <h3 style={{ textAlign: "center" }}>Deul</h3>
+        <span
+          onClick={onClickPlus}
+          // btnActive={btnActive}
+          // switchBtnActive={switchBtnActive}
+          className="deulAdd"
+        >
+          +
+        </span>
+        <hr
+          className="dash"
+          style={{
+            border: "1px dashed #4b4b4b",
+            backgroundColor: "#F9DE87",
+          }}
+        />
+      </DeulHeader>
+      <Deul deulList={deulList} />
+      <NalHeader>
+        <h3 style={{ textAlign: "center" }}>NAL</h3>
+        <span
+          onClick={onClickPlus}
+          className="nalAdd"
+          // switchBtnActive={switchBtnActive}
+          style={{
+            position: "absolute",
+            top: "368px",
+            right: "30px",
+            fontSize: "25px",
+            cursor: "pointer",
+          }}
+        >
+          +
+        </span>
+        <hr
+          className="dash"
+          style={{
+            border: "1px dashed #4b4b4b",
+            backgroundColor: "#F9DE87",
+          }}
+        />
+      </NalHeader>
+      {/* <Nal /> */}
       {modalVisible && (
         <ComeOutModal
           cancel={onClickCancel}
           switchBtnActive={switchBtnActive}
-          btnActive={btnActive}
+          // btnActive={btnActive}
           // addList={addList}
-          // handleSubmit={handleSubmit}
+          handleSubmit={handleSubmit}
           // deulList={deulList}
         />
       )}
@@ -151,4 +182,24 @@ const UserInfo = styled.div`
   }
 `;
 
+const DeulHeader = styled.header`
+  min-height: 200px;
+  position: relative;
+
+  h3 {
+    text-align: center;
+  }
+
+  .deulAdd {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+    cursor: pointer;
+  }
+`;
+
+const NalHeader = styled.header`
+  min-height: 200px;
+`;
 export default Receipt;
