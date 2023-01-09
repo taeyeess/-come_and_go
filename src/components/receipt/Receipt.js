@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Deul from "./inCome/Deul";
 import DeulList from "./inCome/DeulList";
 import Nal from "./outLay/Nal";
+import NalList from "./outLay/NalList";
 import ComeOutModal from "../modal/ComeOutModal";
 
 const Receipt = () => {
@@ -140,13 +141,6 @@ const Receipt = () => {
           onClick={onClickPlus}
           className="nalAdd"
           // switchBtnActive={switchBtnActive}
-          style={{
-            position: "absolute",
-            top: "368px",
-            right: "30px",
-            fontSize: "25px",
-            cursor: "pointer",
-          }}
         >
           +
         </span>
@@ -159,6 +153,7 @@ const Receipt = () => {
         />
       </NalHeader>
       {/* <Nal /> */}
+      <NalList payList={payList} />
       {modalVisible && (
         <ComeOutModal
           cancel={onClickCancel}
@@ -215,7 +210,7 @@ const DeulHeader = styled.header`
 
   .deulAdd {
     position: absolute;
-    top: 0;
+    top: -5px;
     right: 0;
     font-size: 25px;
     cursor: pointer;
@@ -223,6 +218,19 @@ const DeulHeader = styled.header`
 `;
 
 const NalHeader = styled.header`
-  min-height: 200px;
+  /* min-height: 200px; */
+  position: relative;
+
+  h3 {
+    text-align: center;
+  }
+
+  .nalAdd {
+    position: absolute;
+    top: -5px;
+    right: 0;
+    font-size: 25px;
+    cursor: pointer;
+  }
 `;
 export default Receipt;

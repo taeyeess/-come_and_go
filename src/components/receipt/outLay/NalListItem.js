@@ -4,7 +4,7 @@ import CheckInput from "../CheckInput";
 import CheckOutInput from "../CheckOutInput";
 import styled from "styled-components";
 
-const NalListItem = ({ list }) => {
+const NalListItem = ({ list, flag }) => {
   const { id, text, checked, price } = list;
   return (
     <NalListItems
@@ -15,21 +15,25 @@ const NalListItem = ({ list }) => {
         // justifyContent: "space-between",
       }}
     >
-      <div
-        className={cn("checkbox", { checked })}
-        style={{ position: "relative" }}
-      >
-        {checked ? <CheckInput /> : <CheckOutInput />}
-        <div className="listItems" style={{ display: "inline" }}>
-          {text}
-        </div>
+      {flag ? (
+        ""
+      ) : (
         <div
-          className="listPrice"
-          style={{ display: "inline", position: "absolute", right: "0" }}
+          className={cn("checkbox", { checked })}
+          style={{ position: "relative" }}
         >
-          + {price}
+          {checked ? <CheckInput /> : <CheckOutInput />}
+          <div className="listItems" style={{ display: "inline" }}>
+            {text}
+          </div>
+          <div
+            className="listPrice"
+            style={{ display: "inline", position: "absolute", right: "0" }}
+          >
+            - {price}
+          </div>
         </div>
-      </div>
+      )}
     </NalListItems>
   );
 };

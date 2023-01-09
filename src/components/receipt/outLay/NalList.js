@@ -1,11 +1,11 @@
 import React from "react";
 import NalListItem from "./NalListItem";
 
-const NalList = () => {
+const NalList = ({ payList }) => {
   return (
     <div className="NalList" style={{ padding: "0" }}>
-      {NalList.map(list => (
-        <NalListItem list={list} key={list.id} />
+      {payList.map(list => (
+        <NalListItem list={list} key={list.id} flag={list.flag} />
       ))}
     </div>
   );
