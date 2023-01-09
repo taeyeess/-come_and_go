@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DeulList from "./DeulList";
 import ComeOutModal from "../../modal/ComeOutModal";
 
-const Deul = () => {
+const Deul = ({ deulList }) => {
   // const [deulList, setDeulList] = useState([
   //   {
   //     id: 1,
@@ -24,44 +24,30 @@ const Deul = () => {
   //     price: "15,000",
   //   },
   // ]);
-  const [deulList, setDeulList] = useState([]);
+  // const [deulList, setDeulList] = useState([]);
 
-  const nextId = useRef(0);
-  const handleSubmit = text => {
-    //setDeulList([...deulList, text]);
-    const list = {
-      id: nextId.current,
-      text: "",
-      checked: false,
-    };
-    setDeulList(deulList.concat(list));
-    nextId.current += 1; //nextId를 1씩 더하기
-  };
+  // const nextId = useRef(0);
+  // const handleSubmit = text => {
+  //   //setDeulList([...deulList, text]);
+  //   const list = {
+  //     id: nextId.current,
+  //     text: "",
+  //     checked: false,
+  //   };
+  //   setDeulList(deulList.concat(list));
+  //   nextId.current += 1; //nextId를 1씩 더하기
+  // };
 
-  // localStroage에 저장
-  const addList = () => {
-    localStorage.setItem();
-  };
+  // // localStroage에 저장
+  // const addList = () => {
+  //   localStorage.setItem();
+  // };
 
   return (
-    <DeulWrapper>
-      <div className="header">
-        <h3 style={{ textAlign: "center" }}>Deul</h3>
-      </div>
-      <hr
-        className="dash"
-        style={{
-          border: "1px dashed #4b4b4b",
-          backgroundColor: "#F9DE87",
-        }}
-      />
+    <div>
       <DeulList deulList={deulList} />
-    </DeulWrapper>
+    </div>
   );
 };
-
-const DeulWrapper = styled.div`
-  min-height: 200px;
-`;
 
 export default Deul;
