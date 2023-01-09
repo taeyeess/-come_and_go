@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import styled from "styled-components";
 
 const ComeOutModal = ({ cancel, onInsert, switchBtnActive }) => {
-  // css를 동적으로 바꾸기 위한 상태값
+  // css를 동적으로 바꾸기 위한 상태값, 수입과 지출을 구분하는 상태값
   const [flag, setFlag] = useState(true);
 
   const [content, setContent] = useState("");
@@ -18,19 +18,19 @@ const ComeOutModal = ({ cancel, onInsert, switchBtnActive }) => {
   };
   const handleSubmit = useCallback(
     e => {
-      onInsert(content, price);
+      onInsert(content, price, flag);
       setContent("");
-      setPrice("");
+      Number(setPrice(""));
       // e.preventDefault();
     },
-    [onInsert, content, price],
+    [onInsert, content, price, flag],
   );
   // const onClickAddButton = () => {
-  //   const nextDeulList = deulList.concat({
-  //     id: deulList.length,
+  //   const nextPayList = payList.concat({
+  //     id: payList.length,
   //     content,
   //   });
-  //   setDeulList(nextDeulList);
+  //   setPayList(nextPayList);
   // };
 
   // useEffect(() => {
@@ -83,7 +83,7 @@ const ComeOutModal = ({ cancel, onInsert, switchBtnActive }) => {
           ></input>
           금액 :
           <input
-            type="text"
+            type="number"
             name="price"
             placeholder="금액을 입력하세요"
             value={price}

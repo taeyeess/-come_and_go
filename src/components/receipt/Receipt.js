@@ -46,34 +46,38 @@ const Receipt = () => {
 
   // ------------------------------------------------------
 
-  const [deulList, setDeulList] = useState([
-    {
-      id: 1,
-      text: "카페",
-      price: "2,000",
-      checked: false,
-    },
-    {
-      id: 2,
-      text: "밥",
-      price: "6,000",
-      checked: false,
-    },
+  const [payList, setPayList] = useState([
+    // {
+    //   id: 1,
+    //   text: "카페",
+    //   price: "2,000",
+    //   checked: false,
+    //   flag: true,
+    // },
+    // {
+    //   id: 2,
+    //   text: "밥",
+    //   price: "6,000",
+    //   checked: false,
+    //   flag: true,
+    // },
   ]);
 
   const nextId = useRef(0);
 
-  const onInsert = (text, price) => {
-    //setDeulList([...deulList, text]);
+  const onInsert = (text, price, flag) => {
+    //setPayList([...payList, text]);
     const list = {
       id: nextId.current,
       text,
       price,
+      flag,
       checked: false,
     };
-    setDeulList(deulList.concat(list));
+    setPayList(payList.concat(list));
     nextId.current += 1; //nextId를 1씩 더하기
   };
+  // console.log(payList);
 
   // localStroage에 저장
   const addList = () => {
@@ -129,7 +133,7 @@ const Receipt = () => {
         />
       </DeulHeader>
       {/* <Deul /> */}
-      <DeulList deulList={deulList} />
+      <DeulList payList={payList} />
       <NalHeader>
         <h3 style={{ textAlign: "center" }}>NAL</h3>
         <span
@@ -162,8 +166,8 @@ const Receipt = () => {
           // btnActive={btnActive}
           // addList={addList}
           onInsert={onInsert}
-          // deulList={deulList}
-          // setDeulList={setDeulList}
+          // payList={payList}
+          // setPayList={setPayList}
         />
       )}
     </div>

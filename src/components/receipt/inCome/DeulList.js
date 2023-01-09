@@ -1,11 +1,11 @@
 import React from "react";
 import DeulListItem from "./DeulListItem";
 
-const DeulList = ({ deulList }) => {
+const DeulList = ({ payList }) => {
   return (
     <div className="DeulList" style={{ padding: "0", minHeight: "150px" }}>
-      {deulList.map(list => (
-        <DeulListItem list={list} key={list.id} />
+      {payList.map(list => (
+        <DeulListItem list={list} key={list.id} flag={list.flag} />
       ))}
     </div>
   );
