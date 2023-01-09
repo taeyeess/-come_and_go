@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DeulList from "./DeulList";
 import ComeOutModal from "../../modal/ComeOutModal";
 
-const Deul = ({ deulList }) => {
+const Deul = () => {
   // const [deulList, setDeulList] = useState([
   //   {
   //     id: 1,
@@ -43,11 +43,7 @@ const Deul = ({ deulList }) => {
   //   localStorage.setItem();
   // };
 
-  return (
-    <div>
-      <DeulList deulList={deulList} />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Deul;

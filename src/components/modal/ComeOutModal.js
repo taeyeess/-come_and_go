@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import styled from "styled-components";
 
-const ComeOutModal = ({ cancel, handleSubmit, switchBtnActive }) => {
-  // const [btnActive, setBtnActive] = useState(true);
-  // const [btnNalActive, setBtnNalActive] = useState(false);
-  // console.log(btnActive);
-
-  const [content, setContent] = useState("");
-  const [price, setPrice] = useState("");
-
+const ComeOutModal = ({ cancel, onInsert, switchBtnActive }) => {
   // css를 동적으로 바꾸기 위한 상태값
   const [flag, setFlag] = useState(true);
+
+  const [content, setContent] = useState("");
+  // const ref = useRef();
+  const [price, setPrice] = useState("");
 
   //이벤트가 발생할 때마다 (글자가 하나씩 입력될 때 마다) 변화를 감지
   const handleContentChange = e => {
@@ -19,6 +16,26 @@ const ComeOutModal = ({ cancel, handleSubmit, switchBtnActive }) => {
   const handlePriceChange = e => {
     setPrice(e.target.value);
   };
+  const handleSubmit = useCallback(
+    e => {
+      onInsert(content, price);
+      setContent("");
+      setPrice("");
+      // e.preventDefault();
+    },
+    [onInsert, content, price],
+  );
+  // const onClickAddButton = () => {
+  //   const nextDeulList = deulList.concat({
+  //     id: deulList.length,
+  //     content,
+  //   });
+  //   setDeulList(nextDeulList);
+  // };
+
+  // useEffect(() => {
+  //   console.log(onInsert);
+  // }, [onInsert]);
 
   const onClickDeulBtn = () => {
     // btnActive(true);
@@ -54,37 +71,37 @@ const ComeOutModal = ({ cancel, handleSubmit, switchBtnActive }) => {
         </span>
       </ModalHeader>
       <ModalContents>
-        <form>
+        <form onSubmit={handleSubmit}>
           항목 :
           <input
             type="text"
-            name="text"
+            name="payItem"
             placeholder="항목을 입력하세요"
             value={content}
             onChange={handleContentChange}
             autoFocus
           ></input>
-        </form>
-        <form>
           금액 :
           <input
             type="text"
-            name="text"
+            name="price"
             placeholder="금액을 입력하세요"
             value={price}
             onChange={handlePriceChange}
           ></input>
+          <button
+            type="submit"
+            className="submitButton"
+            onClick={() => {
+              cancel();
+              handleSubmit();
+              // onClickAddButton();
+              //addList();
+            }}
+          >
+            ADD
+          </button>
         </form>
-        <div
-          className="submitButton"
-          onClick={() => {
-            cancel();
-            handleSubmit();
-            //addList();
-          }}
-        >
-          ADD
-        </div>
       </ModalContents>
     </ModalWrapper>
   );
@@ -175,8 +192,8 @@ const ModalContents = styled.div`
     bottom: 20px;
     width: 100px;
     height: 30px;
-    line-height: 30px;
     text-align: center;
+    background-color: white;
     border-radius: 20px;
     border: 2px solid #ffd740;
     cursor: pointer;

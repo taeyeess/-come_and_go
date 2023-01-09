@@ -3,7 +3,7 @@ import DeulListItem from "./DeulListItem";
 
 const DeulList = ({ deulList }) => {
   return (
-    <div className="DeulList" style={{ padding: "0" }}>
+    <div className="DeulList" style={{ padding: "0", minHeight: "150px" }}>
       {deulList.map(list => (
         <DeulListItem list={list} key={list.id} />
       ))}

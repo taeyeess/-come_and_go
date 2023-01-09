@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Deul from "./inCome/Deul";
+import DeulList from "./inCome/DeulList";
 import Nal from "./outLay/Nal";
 import ComeOutModal from "../modal/ComeOutModal";
 
@@ -43,15 +44,31 @@ const Receipt = () => {
     console.log(btnActive);
   };
 
-  const [deulList, setDeulList] = useState([]);
+  // ------------------------------------------------------
+
+  const [deulList, setDeulList] = useState([
+    {
+      id: 1,
+      text: "카페",
+      price: "2,000",
+      checked: false,
+    },
+    {
+      id: 2,
+      text: "밥",
+      price: "6,000",
+      checked: false,
+    },
+  ]);
 
   const nextId = useRef(0);
-  const handleSubmit = text => {
+
+  const onInsert = (text, price) => {
     //setDeulList([...deulList, text]);
     const list = {
       id: nextId.current,
-      text: "",
-      price: "",
+      text,
+      price,
       checked: false,
     };
     setDeulList(deulList.concat(list));
@@ -111,7 +128,8 @@ const Receipt = () => {
           }}
         />
       </DeulHeader>
-      <Deul deulList={deulList} />
+      {/* <Deul /> */}
+      <DeulList deulList={deulList} />
       <NalHeader>
         <h3 style={{ textAlign: "center" }}>NAL</h3>
         <span
@@ -143,8 +161,9 @@ const Receipt = () => {
           switchBtnActive={switchBtnActive}
           // btnActive={btnActive}
           // addList={addList}
-          handleSubmit={handleSubmit}
+          onInsert={onInsert}
           // deulList={deulList}
+          // setDeulList={setDeulList}
         />
       )}
     </div>
@@ -183,7 +202,7 @@ const UserInfo = styled.div`
 `;
 
 const DeulHeader = styled.header`
-  min-height: 200px;
+  /* min-height: 200px; */
   position: relative;
 
   h3 {
