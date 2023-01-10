@@ -36,6 +36,7 @@ const Receipt = () => {
     setModalVisible(false);
   };
 
+  // +버튼 실행시 열리는 모달창 내부에 들락, 날락 여부를 판단하는 btn
   const [btnActive, setBtnActive] = useState(true);
 
   // btnActive 상태값을 변경하기 위한 함수. 실질적으로 ComeOutModal컴포넌트에 보내져서 상태값을 변경받음
@@ -65,7 +66,7 @@ const Receipt = () => {
   ]);
 
   const nextId = useRef(0);
-
+  // 항목 추가하기
   const onInsert = (text, price, flag) => {
     //setPayList([...payList, text]);
     const list = {
@@ -85,6 +86,18 @@ const Receipt = () => {
     localStorage.setItem();
   };
 
+  // 항목 삭제하기
+  const onRemove = id => {
+    setPayList(payList.filter(list => list.id !== id));
+  };
+  // 체크 여부 토글
+  const onCheckedToggle = id => {
+    setPayList(
+      payList.map(list =>
+        list.id === id ? { ...list, checked: !list.checked } : list,
+      ),
+    );
+  };
   return (
     <div
       style={{
@@ -134,7 +147,11 @@ const Receipt = () => {
         />
       </DeulHeader>
       {/* <Deul /> */}
-      <DeulList payList={payList} />
+      <DeulList
+        payList={payList}
+        onRemove={onRemove}
+        onCheckedToggle={onCheckedToggle}
+      />
       <NalHeader>
         <h3 style={{ textAlign: "center" }}>NAL</h3>
         <span
