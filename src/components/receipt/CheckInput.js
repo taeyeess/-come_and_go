@@ -3,7 +3,6 @@ import React from "react";
 const CheckInput = () => {
   return (
     <>
-      <input type="checkbox" id="checked" style={{ display: "none" }}></input>
       <label
         htmlFor="checked"
         style={{
@@ -11,12 +10,16 @@ const CheckInput = () => {
           width: "10px",
           height: "10px",
           border: "1px solid black",
-          backgroundColor: "green",
-          // backgroundImage: "url(../../../../../public/images/checked.png)",
+          backgroundColor: "black",
+          // backgroundImage: "url(../../../public/images/checked.png)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% 100%",
           cursor: "pointer",
           margin: "0 4px",
         }}
-      ></label>
+      >
+        <input type="checkbox" id="checked" style={{ display: "none" }}></input>
+      </label>
     </>
   );
 };
