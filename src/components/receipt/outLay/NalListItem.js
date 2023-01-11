@@ -4,8 +4,8 @@ import CheckInput from "../CheckInput";
 import CheckOutInput from "../CheckOutInput";
 import styled from "styled-components";
 
-const NalListItem = ({ list, flag }) => {
-  const { id, text, checked, price } = list;
+const NalListItem = ({ list, onChecked }) => {
+  const { id, text, checked, price, flag } = list;
   return (
     <NalListItems
       className="NalListItem"
@@ -18,19 +18,26 @@ const NalListItem = ({ list, flag }) => {
       {flag ? (
         ""
       ) : (
-        <div
-          className={cn("checkbox", { checked })}
-          style={{ position: "relative" }}
-        >
-          {checked ? <CheckInput /> : <CheckOutInput />}
-          <div className="listItems" style={{ display: "inline" }}>
-            {text}
-          </div>
+        <div>
+          {/* <span onClick={() => remove(id)}>X</span> */}
           <div
-            className="listPrice"
-            style={{ display: "inline", position: "absolute", right: "0" }}
+            onClick={() => {
+              onChecked(id);
+              // onChangeChecked(checked);
+            }}
+            className={cn("checkbox", { checked })}
+            style={{ position: "relative" }}
           >
-            - {price}
+            {checked ? <CheckInput /> : <CheckOutInput />}
+            <div className="listItems" style={{ display: "inline" }}>
+              {text}
+            </div>
+            <div
+              className="listPrice"
+              style={{ display: "inline", position: "absolute", right: "0" }}
+            >
+              - {price}
+            </div>
           </div>
         </div>
       )}

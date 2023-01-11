@@ -164,7 +164,7 @@ const Receipt = () => {
         <h3 style={{ textAlign: "center" }}>Deul</h3>
         {/* {console.log(onChangeChecked)} */}
         {onChangeChecked ? (
-          <span onClick={onRemoveChecked} className="btn">
+          <span onClick={onRemoveChecked} className="deulBtn">
             -
           </span>
         ) : (
@@ -172,7 +172,7 @@ const Receipt = () => {
             onClick={onClickPlus}
             // btnActive={btnActive}
             // switchBtnActive={switchBtnActive}
-            className="btn"
+            className="deulBtn"
           >
             +
           </span>
@@ -195,13 +195,20 @@ const Receipt = () => {
       />
       <NalHeader>
         <h3 style={{ textAlign: "center" }}>NAL</h3>
-        <span
-          onClick={onClickPlus}
-          className="nalAdd"
-          // switchBtnActive={switchBtnActive}
-        >
-          +
-        </span>
+        {onChangeChecked ? (
+          <span onClick={onRemoveChecked} className="nalBtn">
+            -
+          </span>
+        ) : (
+          <span
+            onClick={onClickPlus}
+            // btnActive={btnActive}
+            // switchBtnActive={switchBtnActive}
+            className="nalBtn"
+          >
+            +
+          </span>
+        )}
         <hr
           className="dash"
           style={{
@@ -211,7 +218,11 @@ const Receipt = () => {
         />
       </NalHeader>
       {/* <Nal /> */}
-      <NalList payList={payList} />
+      <NalList
+        payList={payList}
+        onCheckedToggle={onCheckedToggle}
+        onRemoveChecked={onRemoveChecked}
+      />
       {modalVisible && (
         <ComeOutModal
           cancel={onClickCancel}
@@ -266,7 +277,7 @@ const DeulHeader = styled.header`
     text-align: center;
   }
 
-  .btn {
+  .deulBtn {
     position: absolute;
     top: -5px;
     right: 0;
@@ -283,7 +294,7 @@ const NalHeader = styled.header`
     text-align: center;
   }
 
-  .nalAdd {
+  .nalBtn {
     position: absolute;
     top: -5px;
     right: 0;
