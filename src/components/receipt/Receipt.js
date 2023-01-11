@@ -66,6 +66,8 @@ const Receipt = () => {
   const nextId = useRef(0);
   // 항목 추가하기
   const onInsert = (text, price, flag) => {
+    // spread 연산자
+    // 객체 payList에 text를 오버라이드
     //setPayList([...payList, text]);
     const list = {
       id: nextId.current,
