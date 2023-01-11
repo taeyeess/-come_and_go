@@ -17,21 +17,23 @@ const DeulListItem = ({ list, remove, onChecked }) => {
     >
       {/* {console.log(flag)} */}
       {flag && (
-        <div
-          // onClick={() => onChecked(id)}
-          className={cn("checkbox", { checked })}
-          style={{ position: "relative" }}
-        >
-          <p onClick={() => remove(id)}>X</p>
-          {checked ? <CheckInput /> : <CheckOutInput />}
-          <div className="listItems" style={{ display: "inline" }}>
-            {text}
-          </div>
+        <div>
+          <span onClick={() => remove(id)}>X</span>
           <div
-            className="listPrice"
-            style={{ display: "inline", position: "absolute", right: "0" }}
+            onClick={() => onChecked(id)}
+            className={cn("checkbox", { checked })}
+            style={{ position: "relative" }}
           >
-            + {price}
+            {checked ? <CheckInput /> : <CheckOutInput />}
+            <div className="listItems" style={{ display: "inline" }}>
+              {text}
+            </div>
+            <div
+              className="listPrice"
+              style={{ display: "inline", position: "absolute", right: "0" }}
+            >
+              + {price}
+            </div>
           </div>
         </div>
       )}
