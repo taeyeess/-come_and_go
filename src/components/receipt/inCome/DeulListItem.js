@@ -4,7 +4,7 @@ import CheckInput from "../CheckInput";
 import CheckOutInput from "../CheckOutInput";
 import styled from "styled-components";
 
-const DeulListItem = ({ list, remove, onChecked }) => {
+const DeulListItem = ({ list, remove, onChecked, onChangeChecked }) => {
   const { id, text, checked, price, flag } = list;
   return (
     <DeulListItems
@@ -20,7 +20,10 @@ const DeulListItem = ({ list, remove, onChecked }) => {
         <div>
           {/* <span onClick={() => remove(id)}>X</span> */}
           <div
-            onClick={() => onChecked(id)}
+            onClick={() => {
+              onChecked(id);
+              onChangeChecked(checked);
+            }}
             className={cn("checkbox", { checked })}
             style={{ position: "relative" }}
           >

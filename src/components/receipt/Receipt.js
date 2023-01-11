@@ -92,6 +92,7 @@ const Receipt = () => {
   // 체크된 항목 삭제하기
   const onRemoveChecked = checked => {
     setPayList(payList.filter(list => list.checked !== true));
+    setChangeBtn(false);
   };
 
   // 체크 여부 토글
@@ -100,6 +101,19 @@ const Receipt = () => {
       payList.map(list =>
         list.id === id ? { ...list, checked: !list.checked } : list,
       ),
+    );
+  };
+
+  // 체크 여부에 따른 버튼 모양의 변화
+  const [changeBtn, setChangeBtn] = useState(false);
+  const onChangeChecked = checked => {
+    setChangeBtn(
+      // eslint-disable-next-line array-callback-return
+      payList.map(list => {
+        if (list.checked) {
+          return true;
+        }
+      }),
     );
   };
   return (
@@ -134,17 +148,21 @@ const Receipt = () => {
       </UserInfo>
       <DeulHeader>
         <h3 style={{ textAlign: "center" }}>Deul</h3>
-        <span
-          onClick={onClickPlus}
-          // btnActive={btnActive}
-          // switchBtnActive={switchBtnActive}
-          className="deulAdd"
-        >
-          +
-        </span>
-        <span onClick={onRemoveChecked} className="deulRemove">
-          X
-        </span>
+        {/* {console.log(changeBtn)} */}
+        {changeBtn ? (
+          <span onClick={onRemoveChecked} className="btn">
+            -
+          </span>
+        ) : (
+          <span
+            onClick={onClickPlus}
+            // btnActive={btnActive}
+            // switchBtnActive={switchBtnActive}
+            className="btn"
+          >
+            +
+          </span>
+        )}
         <hr
           className="dash"
           style={{
@@ -159,6 +177,7 @@ const Receipt = () => {
         // onRemove={onRemove}
         onCheckedToggle={onCheckedToggle}
         onRemoveChecked={onRemoveChecked}
+        onChangeChecked={onChangeChecked}
       />
       <NalHeader>
         <h3 style={{ textAlign: "center" }}>NAL</h3>
@@ -233,7 +252,7 @@ const DeulHeader = styled.header`
     text-align: center;
   }
 
-  .deulAdd {
+  .btn {
     position: absolute;
     top: -5px;
     right: 0;
