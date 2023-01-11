@@ -92,7 +92,7 @@ const Receipt = () => {
   // 체크된 항목 삭제하기
   const onRemoveChecked = checked => {
     setPayList(payList.filter(list => list.checked !== true));
-    setChangeBtn(false);
+    // setChangeBtn(false);
   };
 
   // 체크 여부 토글
@@ -102,20 +102,34 @@ const Receipt = () => {
         list.id === id ? { ...list, checked: !list.checked } : list,
       ),
     );
+
+    // console.log(payList[0].checked);
+    // setChangeBtn(
+    //   payList.map(list => {
+    //     if (list.checked) {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   }),
+    // );
   };
+  // payList(객체배열)를 조회해서 checked의 여부에 따라 boolean값을 내어주는 some함수 이용. 이 여부에 따라 버튼의 모양이 변경됨
+  const onChangeChecked = payList.some(list => list.checked === true);
+  console.log(payList);
+  console.log(onChangeChecked);
 
   // 체크 여부에 따른 버튼 모양의 변화
-  const [changeBtn, setChangeBtn] = useState(false);
-  const onChangeChecked = checked => {
-    setChangeBtn(
-      // eslint-disable-next-line array-callback-return
-      payList.map(list => {
-        if (list.checked) {
-          return true;
-        }
-      }),
-    );
-  };
+  // const [changeBtn, setChangeBtn] = useState(false);
+  // const onChangeChecked = checked => {
+  //   setChangeBtn(
+  //     payList.map(list => {
+  //       if (list.checked) {
+  //         return true;
+  //       }
+  //     }),
+  //   );
+  // };
   return (
     <div
       style={{
@@ -148,8 +162,8 @@ const Receipt = () => {
       </UserInfo>
       <DeulHeader>
         <h3 style={{ textAlign: "center" }}>Deul</h3>
-        {/* {console.log(changeBtn)} */}
-        {changeBtn ? (
+        {/* {console.log(onChangeChecked)} */}
+        {onChangeChecked ? (
           <span onClick={onRemoveChecked} className="btn">
             -
           </span>
@@ -177,7 +191,7 @@ const Receipt = () => {
         // onRemove={onRemove}
         onCheckedToggle={onCheckedToggle}
         onRemoveChecked={onRemoveChecked}
-        onChangeChecked={onChangeChecked}
+        // onChangeChecked={onChangeChecked}
       />
       <NalHeader>
         <h3 style={{ textAlign: "center" }}>NAL</h3>

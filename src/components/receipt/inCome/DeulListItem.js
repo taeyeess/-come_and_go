@@ -22,7 +22,7 @@ const DeulListItem = ({ list, remove, onChecked, onChangeChecked }) => {
           <div
             onClick={() => {
               onChecked(id);
-              onChangeChecked(checked);
+              // onChangeChecked(checked);
             }}
             className={cn("checkbox", { checked })}
             style={{ position: "relative" }}
