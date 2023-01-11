@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import Deul from "./inCome/Deul";
 import DeulList from "./inCome/DeulList";
-import Nal from "./outLay/Nal";
 import NalList from "./outLay/NalList";
 import ComeOutModal from "../modal/ComeOutModal";
 
@@ -86,10 +84,16 @@ const Receipt = () => {
     localStorage.setItem();
   };
 
-  // 항목 삭제하기
+  // 개별항목 삭제하기
   const onRemove = id => {
     setPayList(payList.filter(list => list.id !== id));
   };
+
+  // 체크된 항목 삭제하기
+  const onRemoveChecked = checked => {
+    setPayList(payList.filter(list => list.checked !== true));
+  };
+
   // 체크 여부 토글
   const onCheckedToggle = id => {
     setPayList(
@@ -138,6 +142,9 @@ const Receipt = () => {
         >
           +
         </span>
+        <span onClick={onRemoveChecked} className="deulRemove">
+          X
+        </span>
         <hr
           className="dash"
           style={{
@@ -149,8 +156,9 @@ const Receipt = () => {
       {/* <Deul /> */}
       <DeulList
         payList={payList}
-        onRemove={onRemove}
+        // onRemove={onRemove}
         onCheckedToggle={onCheckedToggle}
+        onRemoveChecked={onRemoveChecked}
       />
       <NalHeader>
         <h3 style={{ textAlign: "center" }}>NAL</h3>

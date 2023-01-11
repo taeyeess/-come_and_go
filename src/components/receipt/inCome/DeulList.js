@@ -9,7 +9,7 @@ const DeulList = ({ payList, onRemove, onCheckedToggle }) => {
           list={list}
           key={list.id}
           flag={list.flag}
-          remove={onRemove}
+          // remove={onRemove}
           onChecked={onCheckedToggle}
         />
       ))}

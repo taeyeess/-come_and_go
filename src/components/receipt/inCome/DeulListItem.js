@@ -18,7 +18,7 @@ const DeulListItem = ({ list, remove, onChecked }) => {
       {/* {console.log(flag)} */}
       {flag && (
         <div>
-          <span onClick={() => remove(id)}>X</span>
+          {/* <span onClick={() => remove(id)}>X</span> */}
           <div
             onClick={() => onChecked(id)}
             className={cn("checkbox", { checked })}
