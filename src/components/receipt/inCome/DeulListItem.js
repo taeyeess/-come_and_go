@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const DeulListItem = ({ list, remove, onChecked, onChangeChecked }) => {
   const { id, text, checked, price, flag } = list;
+  const commaPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return (
     <DeulListItems
       className="DeulListItem"
@@ -35,7 +36,7 @@ const DeulListItem = ({ list, remove, onChecked, onChangeChecked }) => {
               className="listPrice"
               style={{ display: "inline", position: "absolute", right: "0" }}
             >
-              + {price}
+              + {commaPrice}
             </div>
           </div>
         </div>

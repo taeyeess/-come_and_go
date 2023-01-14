@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const NalListItem = ({ list, onChecked }) => {
   const { id, text, checked, price, flag } = list;
+  const commaPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return (
     <NalListItems
       className="NalListItem"
@@ -36,7 +37,7 @@ const NalListItem = ({ list, onChecked }) => {
               className="listPrice"
               style={{ display: "inline", position: "absolute", right: "0" }}
             >
-              - {price}
+              - {commaPrice}
             </div>
           </div>
         </div>

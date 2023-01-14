@@ -3,6 +3,7 @@ import styled from "styled-components";
 import DeulList from "./inCome/DeulList";
 import NalList from "./outLay/NalList";
 import ComeOutModal from "../modal/ComeOutModal";
+import pngegg from "../../../src/images/pngegg.png";
 
 const Receipt = () => {
   const date = new Date();
@@ -57,7 +58,7 @@ const Receipt = () => {
     // {
     //   id: 2,
     //   text: "밥",
-    //   price: "6,000",
+    //   price: "6000",
     //   checked: false,
     //   flag: true,
     // },
@@ -66,13 +67,15 @@ const Receipt = () => {
   const nextId = useRef(0);
   // 항목 추가하기
   const onInsert = (text, price, flag) => {
+    // let intPrice = Number(price);
     // spread 연산자
     // 객체 payList에 text를 오버라이드
     //setPayList([...payList, text]);
     const list = {
       id: nextId.current,
       text,
-      price,
+      // intPrice,
+      price: Number(price),
       flag,
       checked: false,
     };
@@ -132,17 +135,21 @@ const Receipt = () => {
   //     }),
   //   );
   // };
+
+  // const totalPrice ={totalprice}.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const totalPrice = "3000000".toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return (
     <div
       style={{
         position: "absolute",
         width: "350px",
-        height: "720px",
+        height: "900px",
         left: "45px",
         top: "136px",
         backgroundColor: "#F9DE87",
         padding: "0px 20px",
         boxSizing: "border-box",
+        boxShadow: "0 4px 4px rgb(0 0 0 / 30%)",
       }}
     >
       <Title>RECEIPT</Title>
@@ -162,69 +169,96 @@ const Receipt = () => {
           DATE : {year}/ {todayMonth}/ {todayDate}
         </div>
       </UserInfo>
-      <DeulHeader>
-        <h3 style={{ textAlign: "center" }}>Deul</h3>
-        {/* {console.log(onChangeChecked)} */}
-        {onChangeChecked ? (
-          <span onClick={onRemoveChecked} className="deulBtn">
-            -
-          </span>
-        ) : (
-          <span
-            onClick={onClickPlus}
-            // btnActive={btnActive}
-            // switchBtnActive={switchBtnActive}
-            className="deulBtn"
-          >
-            +
-          </span>
-        )}
-        <hr
-          className="dash"
-          style={{
-            border: "1px dashed #4b4b4b",
-            backgroundColor: "#F9DE87",
-          }}
+      <div className="income">
+        <DeulHeader>
+          <h3 style={{ textAlign: "center" }}>Deul</h3>
+          {/* {console.log(onChangeChecked)} */}
+          {onChangeChecked ? (
+            <span onClick={onRemoveChecked} className="deulBtn">
+              -
+            </span>
+          ) : (
+            <span
+              onClick={onClickPlus}
+              // btnActive={btnActive}
+              // switchBtnActive={switchBtnActive}
+              className="deulBtn"
+            >
+              +
+            </span>
+          )}
+          <hr
+            className="dash"
+            style={{
+              border: "1px dashed #4b4b4b",
+              backgroundColor: "#F9DE87",
+            }}
+          />
+        </DeulHeader>
+        {/* <Deul /> */}
+        <DeulList
+          payList={payList}
+          // onRemove={onRemove}
+          onCheckedToggle={onCheckedToggle}
+          onRemoveChecked={onRemoveChecked}
+          // onChangeChecked={onChangeChecked}
         />
-      </DeulHeader>
-      {/* <Deul /> */}
-      <DeulList
-        payList={payList}
-        // onRemove={onRemove}
-        onCheckedToggle={onCheckedToggle}
-        onRemoveChecked={onRemoveChecked}
-        // onChangeChecked={onChangeChecked}
-      />
-      <NalHeader>
-        <h3 style={{ textAlign: "center" }}>NAL</h3>
-        {onChangeChecked ? (
-          <span onClick={onRemoveChecked} className="nalBtn">
-            -
-          </span>
-        ) : (
-          <span
-            onClick={onClickPlus}
-            // btnActive={btnActive}
-            // switchBtnActive={switchBtnActive}
-            className="nalBtn"
-          >
-            +
-          </span>
-        )}
-        <hr
-          className="dash"
-          style={{
-            border: "1px dashed #4b4b4b",
-            backgroundColor: "#F9DE87",
-          }}
+      </div>
+      <div className="outlay" style={{ minHeight: "300px" }}>
+        <NalHeader>
+          <h3 style={{ textAlign: "center" }}>NAL</h3>
+          {onChangeChecked ? (
+            <span onClick={onRemoveChecked} className="nalBtn">
+              -
+            </span>
+          ) : (
+            <span
+              onClick={onClickPlus}
+              // btnActive={btnActive}
+              // switchBtnActive={switchBtnActive}
+              className="nalBtn"
+            >
+              +
+            </span>
+          )}
+          <hr
+            className="dash"
+            style={{
+              border: "1px dashed #4b4b4b",
+              backgroundColor: "#F9DE87",
+            }}
+          />
+        </NalHeader>
+        {/* <Nal /> */}
+        <NalList
+          payList={payList}
+          onCheckedToggle={onCheckedToggle}
+          onRemoveChecked={onRemoveChecked}
         />
-      </NalHeader>
-      {/* <Nal /> */}
-      <NalList
-        payList={payList}
-        onCheckedToggle={onCheckedToggle}
-        onRemoveChecked={onRemoveChecked}
-      />
+      </div>
+      <div>*******************************************</div>
+      <div
+        className="total"
+        style={{ fontSize: "25px", fontWeight: "900", padding: "10px 5px" }}
+      >
+        TOTAL{" "}
+        <span
+          style={{ fontWeight: "normal", position: "absolute", right: "25px" }}
+        >
+          ₩ {totalPrice}
+        </span>
+      </div>
+      <div style={{ marginTop: "50px", width: "300px" }}>
+        <img
+          className="barcode"
+          src={pngegg}
+          alt="바코드이미지"
+          width="300px"
+        ></img>
+      </div>
+      <div style={{ textAlign: "center", letterSpacing: "3px" }}>
+        HAVE A NICE DAY &#58;&#41;
+      </div>
       {modalVisible && (
         <ComeOutModal
           cancel={onClickCancel}

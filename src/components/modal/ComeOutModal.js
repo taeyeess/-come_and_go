@@ -19,8 +19,10 @@ const ComeOutModal = ({ cancel, onInsert, switchBtnActive }) => {
   const handleSubmit = useCallback(
     e => {
       onInsert(content, price, flag);
-      setContent("");
-      Number(setPrice(""));
+      // setContent("");
+      // Number(setPrice());
+      console.log(price);
+      console.log(typeof price);
       // e.preventDefault();
     },
     [onInsert, content, price, flag],

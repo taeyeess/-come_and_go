@@ -10,6 +10,7 @@ const Note = () => {
         left: "420px",
         top: "136px",
         backgroundColor: "#F9DE87",
+        boxShadow: "0 4px 4px rgb(0 0 0 / 30%)",
       }}
     >
       note

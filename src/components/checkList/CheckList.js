@@ -10,6 +10,7 @@ const CheckList = () => {
         left: "420px",
         top: "484px",
         backgroundColor: "#F9DE87",
+        boxShadow: "0 4px 4px rgb(0 0 0 / 30%)",
       }}
     >
       CheckList
