@@ -12,6 +12,14 @@ const Receipt = () => {
   const todayDate = date.getDate();
   // console.log(`${year}/ ${todayMonth}/ ${todayDate}`);
 
+  //https://chojonghoon.github.io/react/report/household/report-household/
+  //const formatDate = (date: string): string => {
+  //const year = date.substr(0, 4);
+  //const month = date.substr(4, 2);
+  //const day = date.substr(6, 2);
+  //return year + "/" + month + "/" + day;
+  //};
+
   const [value, setValue] = useState("");
 
   // input태그의 focus-out을 위한 form태그의 onSubmit함수
@@ -46,7 +54,6 @@ const Receipt = () => {
   };
 
   // ------------------------------------------------------
-
   const [payList, setPayList] = useState([
     // {
     //   id: 1,
@@ -135,9 +142,17 @@ const Receipt = () => {
   //     }),
   //   );
   // };
-
+  const isDeul = payList.filter(list => list.flag === true);
+  const deulTotal = isDeul.reduce((a, b) => {
+    return a + b.price;
+  }, 0);
+  const isNal = payList.filter(list => list.flag === false);
+  const nalTotal = isNal.reduce((a, b) => {
+    return a + b.price;
+  }, 0);
+  const total = deulTotal - nalTotal;
   // const totalPrice ={totalprice}.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  const totalPrice = "3000000".toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const totalPrice = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return (
     <div
       style={{
@@ -203,6 +218,7 @@ const Receipt = () => {
           onRemoveChecked={onRemoveChecked}
           // onChangeChecked={onChangeChecked}
         />
+        {console.log(deulTotal)}
       </div>
       <div className="outlay" style={{ minHeight: "300px" }}>
         <NalHeader>
@@ -235,6 +251,7 @@ const Receipt = () => {
           onCheckedToggle={onCheckedToggle}
           onRemoveChecked={onRemoveChecked}
         />
+        {console.log(nalTotal)}
       </div>
       <div>*******************************************</div>
       <div
