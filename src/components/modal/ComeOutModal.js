@@ -72,23 +72,27 @@ const ComeOutModal = ({ cancel, onInsert, switchBtnActive }) => {
       </ModalHeader>
       <ModalContents>
         <form onSubmit={handleSubmit}>
-          항목 :
-          <input
-            type="text"
-            name="payItem"
-            placeholder="항목을 입력하세요"
-            value={content}
-            onChange={handleContentChange}
-            autoFocus
-          ></input>
-          금액 :
-          <input
-            type="number"
-            name="price"
-            placeholder="금액을 입력하세요"
-            value={price}
-            onChange={handlePriceChange}
-          ></input>
+          <div>
+            항목 :
+            <input
+              type="text"
+              name="payItem"
+              placeholder="항목을 입력하세요"
+              value={content}
+              onChange={handleContentChange}
+              autoFocus
+            ></input>
+          </div>
+          <div>
+            금액 :
+            <input
+              type="number"
+              name="price"
+              placeholder="금액을 입력하세요"
+              value={price}
+              onChange={handlePriceChange}
+            ></input>
+          </div>
           <button
             type="submit"
             className="submitButton"
@@ -181,10 +185,16 @@ const ModalContents = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
     border-bottom: 1px solid grey;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-left: 5px;
     :focus {
       outline: none;
     }
+  }
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
   .submitButton {
     position: absolute;
