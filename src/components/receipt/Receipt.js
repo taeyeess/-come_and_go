@@ -4,6 +4,9 @@ import DeulList from "./inCome/DeulList";
 import NalList from "./outLay/NalList";
 import ComeOutModal from "../modal/ComeOutModal";
 import pngegg from "../../../src/images/pngegg.png";
+import ShareButton from "./ShareButton";
+// 영수증을 원하는 색상으로 custom
+// 자주쓰는 키워드 자동완성기능
 
 const Receipt = () => {
   const date = new Date();
@@ -151,7 +154,7 @@ const Receipt = () => {
     return a + b.price;
   }, 0);
   const total = deulTotal - nalTotal;
-  // const totalPrice ={totalprice}.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   const totalPrice = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return (
     <div
@@ -276,6 +279,7 @@ const Receipt = () => {
       <div style={{ textAlign: "center", letterSpacing: "3px" }}>
         HAVE A NICE DAY &#58;&#41;
       </div>
+      <ShareButton></ShareButton>
       {modalVisible && (
         <ComeOutModal
           cancel={onClickCancel}
