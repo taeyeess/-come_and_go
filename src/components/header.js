@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <Link to="/">
+      <Link to="/" style={{ textDecoration: "none" }}>
         <h1>DEULOCK - NALOCK</h1>
       </Link>
     </>
