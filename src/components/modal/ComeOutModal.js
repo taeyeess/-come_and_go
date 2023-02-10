@@ -19,25 +19,12 @@ const ComeOutModal = ({ cancel, onInsert, switchBtnActive }) => {
   const handleSubmit = useCallback(
     e => {
       onInsert(content, price, flag);
-      // setContent("");
-      // Number(setPrice());
+
       console.log(price);
       console.log(typeof price);
-      // e.preventDefault();
     },
     [onInsert, content, price, flag],
   );
-  // const onClickAddButton = () => {
-  //   const nextPayList = payList.concat({
-  //     id: payList.length,
-  //     content,
-  //   });
-  //   setPayList(nextPayList);
-  // };
-
-  // useEffect(() => {
-  //   console.log(onInsert);
-  // }, [onInsert]);
 
   const onClickDeulBtn = () => {
     // btnActive(true);

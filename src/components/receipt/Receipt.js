@@ -196,12 +196,7 @@ const Receipt = () => {
               -
             </span>
           ) : (
-            <span
-              onClick={onClickPlus}
-              // btnActive={btnActive}
-              // switchBtnActive={switchBtnActive}
-              className="deulBtn"
-            >
+            <span onClick={onClickPlus} className="deulBtn">
               +
             </span>
           )}
@@ -221,7 +216,6 @@ const Receipt = () => {
           onRemoveChecked={onRemoveChecked}
           // onChangeChecked={onChangeChecked}
         />
-        {console.log(deulTotal)}
       </div>
       <div className="outlay" style={{ minHeight: "300px" }}>
         <NalHeader>
@@ -231,12 +225,7 @@ const Receipt = () => {
               -
             </span>
           ) : (
-            <span
-              onClick={onClickPlus}
-              // btnActive={btnActive}
-              // switchBtnActive={switchBtnActive}
-              className="nalBtn"
-            >
+            <span onClick={onClickPlus} className="nalBtn">
               +
             </span>
           )}
@@ -284,11 +273,7 @@ const Receipt = () => {
         <ComeOutModal
           cancel={onClickCancel}
           switchBtnActive={switchBtnActive}
-          // btnActive={btnActive}
-          // addList={addList}
           onInsert={onInsert}
-          // payList={payList}
-          // setPayList={setPayList}
         />
       )}
     </div>
