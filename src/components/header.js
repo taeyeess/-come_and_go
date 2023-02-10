@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div>
-      <h1>DEULOCK - NALOCK</h1>
-    </div>
+    <>
+      <Link to="/">
+        <h1>DEULOCK - NALOCK</h1>
+      </Link>
+    </>
   );
 };
 

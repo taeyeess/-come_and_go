@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "./components/Header";
-import Contents from "./components/Contents";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <AppContainer>
-      <Main>
-        <Header />
-        <Contents />
-      </Main>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainPage />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+        </Routes>
+      </BrowserRouter>
     </AppContainer>
   );
 }
@@ -34,14 +37,4 @@ const AppContainer = styled.div`
   user-select: none;
 `;
 
-const Main = styled.div`
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 20px 30px rgb(0 0 0 / 20%);
-  margin: 0px auto;
-  padding: 57px 43px;
-  position: relative;
-  width: 652px;
-  height: 944px;
-`;
 export default App;
